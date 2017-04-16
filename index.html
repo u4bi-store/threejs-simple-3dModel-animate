@@ -29,7 +29,8 @@
             container = document.getElementById('container');
         
         var 
-            marine;
+            marine,
+            helper;
 
         init();
 
@@ -53,6 +54,11 @@
                 marine.rotateY(Math.PI);
                 marine.position.y = -100;
                 scene.add(marine);
+
+                helper = new THREE.SkeletonHelper(marine);
+                helper.material.linewidth = 3;
+                scene.add(helper);
+
             });
 
             render();
