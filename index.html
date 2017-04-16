@@ -11,7 +11,7 @@
         <div id="container"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
-		<script>
+        <script>
 
         var screen = {
                 width  : 400,
@@ -35,11 +35,24 @@
 
         function init(){
             scene.add(camera);
-            camera.position.z = 000;
+            camera.position.z = 500;
 
+            renderer.setClearColor(0xFF00FF);
             renderer.setSize( screen.width, screen.height );
 
             container.appendChild( renderer.domElement );
+
+            var ambient = new THREE.AmbientLight(0xFFFFFF);
+            scene.add(ambient);
+            
+            var loader = new THREE.ObjectLoader();
+            
+            loader.load('./models/marine/marine_anims_core.json', function(mesh){
+                marine = mesh;
+
+                marine.rotateY(Math.PI);
+                scene.add(marine);
+            });
 
             render();
         }
