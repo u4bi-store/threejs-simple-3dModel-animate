@@ -15,7 +15,7 @@
 
         var screen = {
                 width  : 400,
-                height : 300
+                height : 600
             },
             view = {
                 angle  : 45,
@@ -35,7 +35,7 @@
 
         function init(){
             scene.add(camera);
-            camera.position.z = 500;
+            camera.position.z = 300;
 
             renderer.setClearColor(0xFF00FF);
             renderer.setSize( screen.width, screen.height );
@@ -46,11 +46,12 @@
             scene.add(ambient);
             
             var loader = new THREE.ObjectLoader();
-            
+
             loader.load('./models/marine/marine_anims_core.json', function(mesh){
                 marine = mesh;
 
                 marine.rotateY(Math.PI);
+                marine.position.y = -100;
                 scene.add(marine);
             });
 
