@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>threejs - animate json-loader</title>
+        <title>threejs - animate object-loader</title>
         <style>
             
         </style>
@@ -33,7 +33,8 @@
             skin,
             loader = new THREE.ObjectLoader(),
             clock = new THREE.Clock,
-            mixer;
+            mixer,
+            helper;
 
         init();
 
@@ -60,6 +61,10 @@
                 scene.add(skin);
 
                 console.log(skin);
+
+                helper = new THREE.SkeletonHelper(skin);
+                helper.material.linewidth = 3;
+                scene.add(helper);
 
                 mixer = new THREE.AnimationMixer(skin);
                 mixer.clipAction(skin.geometry.animations[1]).play();
