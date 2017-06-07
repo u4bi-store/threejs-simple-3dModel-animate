@@ -30,7 +30,7 @@
             container = document.getElementById('container');
         
         var 
-            gear,
+            skin,
             loader = new THREE.ObjectLoader(),
             clock = new THREE.Clock,
             mixer,
@@ -53,21 +53,21 @@
             var light = new THREE.HemisphereLight(0xFFFFFF, 0x003300, 1);
             scene.add(light);
             
-            loader.load('../models/gear/gear.json', function (mesh){
-                gear = mesh;
+            loader.load('../models/marine/marine_anims_core.json', function (mesh){
+                skin = mesh.children[0];
 
-                gear.rotateY(Math.PI/2);
-                scene.add(gear);
+                skin.rotateY(Math.PI);
+                skin.position.y = -100;
+                scene.add(skin);
 
-                console.log(gear);
+                console.log(skin);
 
-                helper = new THREE.SkeletonHelper(gear);
+                helper = new THREE.SkeletonHelper(skin);
                 helper.material.linewidth = 3;
                 scene.add(helper);
 
-                mixer = new THREE.AnimationMixer(gear);
-
-                mixer.clipAction(gear.animations[0]).play();
+                mixer = new THREE.AnimationMixer(skin);
+                mixer.clipAction(skin.geometry.animations[1]).play();
 
             });
 
